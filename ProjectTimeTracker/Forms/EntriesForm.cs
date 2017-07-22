@@ -8,12 +8,19 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
-namespace ProjectTimeTracker
+using NLog;
+
+using ProjectTimeTracker.Logging;
+
+namespace ProjectTimeTracker.Forms
 {
-    public partial class Form1 : Form
+    public partial class EntriesForm : Form
     {
-        public Form1()
+        private readonly ILogger<EntriesForm> _logger;
+
+        public EntriesForm(ILogger<EntriesForm> logger)
         {
+            _logger = logger;
             InitializeComponent();
         }
     }
