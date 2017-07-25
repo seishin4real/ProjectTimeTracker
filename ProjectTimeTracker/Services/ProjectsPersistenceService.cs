@@ -11,8 +11,8 @@ namespace ProjectTimeTracker.Services
 {
     public interface IProjectsPersistenceService
     {
-        List<Project> Load();
-        void Save(List<Project> projects);
+        Project[] Load();
+        void Save(Project[] projects);
     }
 
     public class ProjectsPersistenceService : IProjectsPersistenceService
@@ -22,20 +22,20 @@ namespace ProjectTimeTracker.Services
         private string _filePath;
         private string FilePath => _filePath ?? (_filePath = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.UserProfile), FileName));
 
-        public List<Project> Load()
+        public Project[] Load()
         {
-            List<Project> result;
+            Project[] result;
 
             if (!File.Exists(FilePath))
             {
-                Save(result = new List<Project>());
+                Save(result = new Project[0]);
             }
-            else { result = JsonConvert.DeserializeObject<List<Project>>(File.ReadAllText(FilePath)); }
+            else { result = JsonConvert.DeserializeObject<Project[]>(File.ReadAllText(FilePath)); }
 
             return result;
         }
 
-        public void Save(List<Project> projects)
+        public void Save(Project[] projects)
         {
             var content = JsonConvert.SerializeObject(projects, Formatting.Indented);
             File.WriteAllText(FilePath, content, Encoding.UTF8);

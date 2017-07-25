@@ -1,8 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
+using System.ComponentModel;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 using ProjectTimeTracker.Models;
 
@@ -15,6 +13,8 @@ namespace ProjectTimeTracker.Services
         void LoadProjects();
         void SaveProjects();
         void AddProjectEntry(Project project, ProjectEntry projectEntry);
+        void DeleteProject(long currentProjectId);
+        void DeleteProjectEntries(Project project, string[] entries);
     }
 
     public class ProjectsService : IProjectsService
@@ -31,13 +31,14 @@ namespace ProjectTimeTracker.Services
         {
             Projects = _persistenceService
                 .Load()
-                .OrderByDescending(p=>p.LastUsed)
+                .OrderByDescending(p => p.LastUsed)
                 .ToList();
         }
-        
+
         public void AddProject(string name)
         {
             Projects.Add(new Project(name));
+            Projects.Sort((x, y) => y.LastUsed.CompareTo(x.LastUsed));
             SaveProjects();
         }
 
@@ -47,9 +48,22 @@ namespace ProjectTimeTracker.Services
             SaveProjects();
         }
 
+        public void DeleteProject(long projectId)
+        {
+            Projects.Remove(Projects.First(p => p.Id == projectId));
+            SaveProjects();
+        }
+
+        public void DeleteProjectEntries(Project project, string[] ids)
+        {
+            project.Entries.RemoveAll(e => ids.Contains(e.Id));
+            SaveProjects();
+        }
+
         public void SaveProjects()
         {
-            _persistenceService.Save(Projects);
+            _persistenceService.Save(Projects.ToArray());
         }
+
     }
 }

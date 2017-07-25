@@ -23,8 +23,10 @@ namespace ProjectTimeTracker
                 ctx.Resolve<ILogger<AppForm>>(),
                 ctx.Resolve<IProjectsService>()
             )).As<AppForm>();
-            builder.Register(ctx => new ReportGeneratorForm(ctx.Resolve<ILogger<ReportGeneratorForm>>())).As<ReportGeneratorForm>();
-            builder.Register(ctx => new EntriesForm(ctx.Resolve<ILogger<EntriesForm>>())).As<EntriesForm>();
+            builder.Register(ctx => new EntriesForm(
+                ctx.Resolve<ILogger<EntriesForm>>(),
+                ctx.Resolve<IProjectsService>()
+            )).As<EntriesForm>();
 
             builder.RegisterType<ProjectsService>().As<IProjectsService>().SingleInstance();
             builder.RegisterType<ProjectsPersistenceService>().As<IProjectsPersistenceService>();

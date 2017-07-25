@@ -60,12 +60,6 @@
     <Compile Include="Forms\EntriesForm.Designer.cs">
       <DependentUpon>EntriesForm.cs</DependentUpon>
     </Compile>
-    <Compile Include="Forms\ReportGeneratorForm.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="Forms\ReportGeneratorForm.Designer.cs">
-      <DependentUpon>ReportGeneratorForm.cs</DependentUpon>
-    </Compile>
     <Compile Include="IoC.cs" />
     <Compile Include="Logging\ILogger.cs" />
     <Compile Include="Logging\LoggerConfig.cs" />
@@ -78,6 +72,9 @@
     <Compile Include="Services\ProjectsService.cs" />
     <EmbeddedResource Include="Forms\AppForm.resx">
       <DependentUpon>AppForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\EntriesForm.resx">
+      <DependentUpon>EntriesForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>

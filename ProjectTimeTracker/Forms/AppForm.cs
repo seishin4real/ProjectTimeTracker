@@ -1,4 +1,5 @@
 ﻿using System;
+using System.ComponentModel;
 using System.Windows.Forms;
 
 using ProjectTimeTracker.Logging;
@@ -14,6 +15,7 @@ namespace ProjectTimeTracker.Forms
 
         private bool _isMeasuring;
 
+        private BindingList<Project> _projects { get; set; }
         private Project CurrentProject => lbProjects.SelectedItem as Project;
         private ProjectEntry CurrentProjectEntry { get; set; }
 
@@ -38,7 +40,8 @@ namespace ProjectTimeTracker.Forms
         {
             base.OnLoad(e);
             _projectsService.LoadProjects();
-            lbProjects.DataSource = _projectsService.Projects;
+            _projects = new BindingList<Project>(_projectsService.Projects);
+            lbProjects.DataSource = _projects;
             lbProjects.ResetBindings();
         }
 
@@ -52,16 +55,43 @@ namespace ProjectTimeTracker.Forms
             };
 
             btnToggle.Click += (s, e) => ToggleState();
+
+            lbProjects.MouseDoubleClick += (s, e) =>
+            {
+                using (var form = IoC.Resolve<EntriesForm>())
+                {
+                    form.Project = CurrentProject;
+                    form.ShowDialog(this);
+                }
+            };
+            lbProjects.KeyDown += (s, e) =>
+            {
+                if (e.KeyCode == Keys.Delete)
+                {
+                    DeleteProject();
+                }
+            };
         }
-    
+
 
         private void AddProject()
         {
             var name = tbNewProject.Text;
 
             _projectsService.AddProject(name);
-
+            _projects.ResetBindings();
             tbNewProject.Text = string.Empty;
+        }
+
+        private void DeleteProject()
+        {
+            if (DialogResult.No == MessageBox.Show($"Are you sure you want to delete '{CurrentProject.Name}'?", "Warning", MessageBoxButtons.YesNo, MessageBoxIcon.Warning))
+            {
+                return;
+            }
+
+            _projectsService.DeleteProject(CurrentProject.Id);
+            _projects.ResetBindings();
         }
 
         private void ToggleState()
