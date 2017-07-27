@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.ComponentModel;
 using System.Linq;
 
@@ -44,6 +45,7 @@ namespace ProjectTimeTracker.Services
 
         public void AddProjectEntry(Project project, ProjectEntry projectEntry)
         {
+            project.UpdateUsage();
             project.Entries.Add(projectEntry);
             SaveProjects();
         }

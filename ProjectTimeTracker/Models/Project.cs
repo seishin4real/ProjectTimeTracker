@@ -28,27 +28,10 @@ namespace ProjectTimeTracker.Models
         public override string ToString() => Name;
 
         #endregion
-    }
 
-    public class ProjectEntry
-    {
-        [JsonProperty(Order = 1)]
-        public string Id { get; set; } = Guid.NewGuid().ToString();
-        [JsonProperty(Order = 2)]
-        public DateTime Start { get; set; } = DateTime.Now;
-        [JsonProperty(Order = 3)]
-        public DateTime? End { get; set; }
-
-        public ProjectEntry Finish()
+        public void UpdateUsage()
         {
-            End = DateTime.Now;
-            return this;
+            LastUsed = DateTime.Now;
         }
-
-        #region overrides
-
-        public override string ToString() => $"{Start:yyyy-MM-dd HH:mm} -> " + (End?.ToString("yyyy-MM-dd HH:mm") ?? "...");
-
-        #endregion
     }
 }

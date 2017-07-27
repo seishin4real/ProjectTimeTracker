@@ -98,14 +98,15 @@ namespace ProjectTimeTracker.Forms
         {
             _isMeasuring = !_isMeasuring;
 
-            if (_isMeasuring)
+            if (_isMeasuring) //START ACTION
             {
                 _projectsService.AddProjectEntry(CurrentProject, CurrentProjectEntry = new ProjectEntry());
                 btnToggle.Text = "STOP";
             }
-            else
+            else //STOP ACTION
             {
                 CurrentProjectEntry.Finish();
+                CurrentProject.UpdateUsage();
                 _projectsService.SaveProjects();
                 btnToggle.Text = "START";
             }

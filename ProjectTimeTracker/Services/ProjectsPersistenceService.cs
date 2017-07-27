@@ -17,8 +17,11 @@ namespace ProjectTimeTracker.Services
 
     public class ProjectsPersistenceService : IProjectsPersistenceService
     {
+#if DEBUG
+        private const string FileName = ".project-time-tracker-debug.json";
+#else
         private const string FileName = ".project-time-tracker.json";
-
+#endif
         private string _filePath;
         private string FilePath => _filePath ?? (_filePath = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.UserProfile), FileName));
 

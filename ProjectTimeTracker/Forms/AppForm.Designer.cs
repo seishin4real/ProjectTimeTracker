@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(AppForm));
             this.btnToggle = new System.Windows.Forms.Button();
             this.tbNewProject = new System.Windows.Forms.TextBox();
             this.lbProjects = new System.Windows.Forms.ListBox();
@@ -111,7 +112,7 @@
             this.ClientSize = new System.Drawing.Size(319, 408);
             this.Controls.Add(this.tableLayoutPanel1);
             this.ForeColor = System.Drawing.Color.WhiteSmoke;
-            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.SizableToolWindow;
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "AppForm";
             this.Padding = new System.Windows.Forms.Padding(7);
             this.Text = "Project time tracker";
