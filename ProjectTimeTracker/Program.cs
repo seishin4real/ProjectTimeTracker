@@ -1,9 +1,6 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Globalization;
-using System.Linq;
 using System.Threading;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 
 using Autofac;
@@ -16,7 +13,7 @@ namespace ProjectTimeTracker
     static class Program
     {
         [STAThread]
-        static void Main()
+        private static void Main()
         {
             Thread.CurrentThread.CurrentCulture =
                 Thread.CurrentThread.CurrentUICulture = new CultureInfo("pl-PL");

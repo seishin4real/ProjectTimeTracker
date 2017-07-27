@@ -3,8 +3,6 @@ using System.Collections.Generic;
 
 using Newtonsoft.Json;
 
-using NLog.Layouts;
-
 namespace ProjectTimeTracker.Models
 {
     public class Project

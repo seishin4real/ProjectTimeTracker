@@ -1,18 +1,13 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Drawing;
 using System.Drawing.Text;
 using System.IO;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 
 using Newtonsoft.Json;
 
 namespace ProjectTimeTracker.Configuration
 {
-
     public interface IConfig
     {
         IConfig GetDefault();
@@ -24,7 +19,7 @@ namespace ProjectTimeTracker.Configuration
 
         private static SettingsConfig _settingsConfig;
         private static FontFamily _iconsFontFamily;
-        
+
         public static SettingsConfig SettingsConfig => _settingsConfig ?? (_settingsConfig = LoadConfig<SettingsConfig>(SettingsConfigFileName));
 
         public static FontFamily IconsFontFamily

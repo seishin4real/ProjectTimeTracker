@@ -1,6 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
+﻿using System.Collections.Generic;
 using System.Linq;
 
 using ProjectTimeTracker.Models;
@@ -66,6 +64,5 @@ namespace ProjectTimeTracker.Services
         {
             _persistenceService.Save(Projects.ToArray());
         }
-
     }
 }

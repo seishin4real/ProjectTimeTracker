@@ -73,7 +73,6 @@ namespace ProjectTimeTracker.Forms
             };
         }
 
-
         private void AddProject()
         {
             var name = tbNewProject.Text;

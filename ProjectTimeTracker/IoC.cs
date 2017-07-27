@@ -1,7 +1,4 @@
-﻿using System;
-using System.Reflection;
-
-using Autofac;
+﻿using Autofac;
 
 using ProjectTimeTracker.Forms;
 using ProjectTimeTracker.Logging;
@@ -16,17 +13,19 @@ namespace ProjectTimeTracker
         public static IContainer BuildContainer()
         {
             var builder = new ContainerBuilder();
-            
+
             builder.RegisterGeneric(typeof(NLogger<>)).As(typeof(ILogger<>));
 
             builder.Register(ctx => new AppForm(
-                ctx.Resolve<ILogger<AppForm>>(),
-                ctx.Resolve<IProjectsService>()
-            )).As<AppForm>();
+                    ctx.Resolve<ILogger<AppForm>>(),
+                    ctx.Resolve<IProjectsService>()
+                ))
+                .As<AppForm>();
             builder.Register(ctx => new EntriesForm(
-                ctx.Resolve<ILogger<EntriesForm>>(),
-                ctx.Resolve<IProjectsService>()
-            )).As<EntriesForm>();
+                    ctx.Resolve<ILogger<EntriesForm>>(),
+                    ctx.Resolve<IProjectsService>()
+                ))
+                .As<EntriesForm>();
 
             builder.RegisterType<ProjectsService>().As<IProjectsService>().SingleInstance();
             builder.RegisterType<ProjectsPersistenceService>().As<IProjectsPersistenceService>();
