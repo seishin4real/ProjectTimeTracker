@@ -95,6 +95,12 @@ namespace ProjectTimeTracker.Forms
 
         private void ToggleState()
         {
+            if (CurrentProject == null)
+            {
+                MessageBox.Show("Pick a project", "", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+                return;
+            }
+
             _isMeasuring = !_isMeasuring;
 
             if (_isMeasuring) //START ACTION

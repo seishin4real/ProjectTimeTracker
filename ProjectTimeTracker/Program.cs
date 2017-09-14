@@ -15,8 +15,8 @@ namespace ProjectTimeTracker
         [STAThread]
         private static void Main()
         {
-            Thread.CurrentThread.CurrentCulture =
-                Thread.CurrentThread.CurrentUICulture = new CultureInfo("pl-PL");
+//            Thread.CurrentThread.CurrentCulture =
+//                Thread.CurrentThread.CurrentUICulture = new CultureInfo("en-US");
 
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
