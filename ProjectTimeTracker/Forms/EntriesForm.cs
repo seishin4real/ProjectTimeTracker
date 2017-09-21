@@ -45,10 +45,13 @@ namespace ProjectTimeTracker.Forms
             lbEntries.SelectedValueChanged += (s, e) => PrepareSummary();
 
             btnSelectToday.Click += (s, e) => SelectItems(DateTime.Today, DateTime.Today);
+
             btnSelectThisWeek.Click += (s, e) => SelectItems(DateTime.Today.StartOfWeek(), DateTime.Today.EndOfWeek());
-            btnSelectLastWeek.Click += (s, e) => SelectItems(DateTime.Today.AddDays(7).StartOfWeek(), DateTime.Today.AddDays(7).EndOfWeek());
+            btnSelectLastWeek.Click += (s, e) => SelectItems(DateTime.Today.AddDays(-7).StartOfWeek(), DateTime.Today.AddDays(-7).EndOfWeek());
+
             btnSelectThisMonth.Click += (s, e) => SelectItems(DateTime.Today.StartOfMonth(), DateTime.Today.EndOfMonth());
-            btnSelectLastMonth.Click += (s, e) => SelectItems(DateTime.Today.AddMonths(1).StartOfMonth(), DateTime.Today.AddMonths(1).EndOfMonth());
+            btnSelectLastMonth.Click += (s, e) => SelectItems(DateTime.Today.AddMonths(-1).StartOfMonth(), DateTime.Today.AddMonths(-1).EndOfMonth());
+
             btnSelectAll.Click += (s, e) => SelectItems(DateTime.MinValue, DateTime.MaxValue);
         }
 
