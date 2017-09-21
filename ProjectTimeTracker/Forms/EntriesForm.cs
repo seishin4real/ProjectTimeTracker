@@ -16,7 +16,7 @@ namespace ProjectTimeTracker.Forms
         private readonly IProjectsService _projectsService;
         public Project Project { get; set; }
 
-        private BindingList<ProjectEntry> Entries { get; set; }
+        private BindingList<ProjectEntry> _entries;
 
         public EntriesForm(ILogger<EntriesForm> logger, IProjectsService projectsService)
         {
@@ -31,8 +31,8 @@ namespace ProjectTimeTracker.Forms
         protected override void OnLoad(EventArgs e)
         {
             base.OnLoad(e);
-            Entries = new BindingList<ProjectEntry>(Project.Entries);
-            lbEntries.DataSource = Entries;
+            _entries = new BindingList<ProjectEntry>(Project.Entries);
+            lbEntries.DataSource = _entries;
             lbEntries.ResetBindings();
             PrepareSummary();
         }
@@ -43,6 +43,27 @@ namespace ProjectTimeTracker.Forms
         {
             lbEntries.KeyDown += LbEntries_KeyDown;
             lbEntries.SelectedValueChanged += (s, e) => PrepareSummary();
+
+            btnSelectToday.Click += (s, e) => SelectItems(DateTime.Today, DateTime.Today);
+            btnSelectThisWeek.Click += (s, e) => SelectItems(DateTime.Today.StartOfWeek(), DateTime.Today.EndOfWeek());
+            btnSelectLastWeek.Click += (s, e) => SelectItems(DateTime.Today.AddDays(7).StartOfWeek(), DateTime.Today.AddDays(7).EndOfWeek());
+            btnSelectThisMonth.Click += (s, e) => SelectItems(DateTime.Today.StartOfMonth(), DateTime.Today.EndOfMonth());
+            btnSelectLastMonth.Click += (s, e) => SelectItems(DateTime.Today.AddMonths(1).StartOfMonth(), DateTime.Today.AddMonths(1).EndOfMonth());
+            btnSelectAll.Click += (s, e) => SelectItems(DateTime.MinValue, DateTime.MaxValue);
+        }
+
+        private void SelectItems(DateTime since, DateTime until)
+        {
+            lbEntries.SelectedItems.Clear();
+            for (var i = 0; i < lbEntries.Items.Count; i++)
+            {
+                var entry = lbEntries.Items[i] as ProjectEntry;
+                var date = entry.Start.Date;
+                if (date >= since && date <= until)
+                {
+                    lbEntries.SelectedItems.Add(entry);
+                }
+            }
         }
 
         private void PrepareSummary()
@@ -73,7 +94,7 @@ namespace ProjectTimeTracker.Forms
                     .ToArray();
 
                 _projectsService.DeleteProjectEntries(Project, toRemove);
-                Entries.ResetBindings();
+                _entries.ResetBindings();
             }
         }
 

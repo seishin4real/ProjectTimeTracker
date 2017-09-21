@@ -30,10 +30,13 @@
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(AppForm));
             this.btnToggle = new System.Windows.Forms.Button();
-            this.tbNewProject = new System.Windows.Forms.TextBox();
             this.lbProjects = new System.Windows.Forms.ListBox();
             this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
+            this.panel1 = new System.Windows.Forms.Panel();
+            this.tbNewProject = new System.Windows.Forms.TextBox();
+            this.label1 = new System.Windows.Forms.Label();
             this.tableLayoutPanel1.SuspendLayout();
+            this.panel1.SuspendLayout();
             this.SuspendLayout();
             // 
             // btnToggle
@@ -53,21 +56,6 @@
             this.btnToggle.TabIndex = 36;
             this.btnToggle.Text = "START";
             this.btnToggle.UseVisualStyleBackColor = false;
-            // 
-            // tbNewProject
-            // 
-            this.tbNewProject.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.tbNewProject.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(31)))), ((int)(((byte)(22)))), ((int)(((byte)(9)))));
-            this.tbNewProject.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.tbNewProject.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
-            this.tbNewProject.ForeColor = System.Drawing.Color.WhiteSmoke;
-            this.tbNewProject.Location = new System.Drawing.Point(2, 2);
-            this.tbNewProject.Margin = new System.Windows.Forms.Padding(2);
-            this.tbNewProject.Name = "tbNewProject";
-            this.tbNewProject.Size = new System.Drawing.Size(301, 26);
-            this.tbNewProject.TabIndex = 37;
             // 
             // lbProjects
             // 
@@ -90,9 +78,9 @@
             // 
             this.tableLayoutPanel1.ColumnCount = 1;
             this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 100F));
-            this.tableLayoutPanel1.Controls.Add(this.tbNewProject, 0, 0);
             this.tableLayoutPanel1.Controls.Add(this.lbProjects, 0, 1);
             this.tableLayoutPanel1.Controls.Add(this.btnToggle, 0, 2);
+            this.tableLayoutPanel1.Controls.Add(this.panel1, 0, 0);
             this.tableLayoutPanel1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.tableLayoutPanel1.Location = new System.Drawing.Point(7, 7);
             this.tableLayoutPanel1.Name = "tableLayoutPanel1";
@@ -103,6 +91,42 @@
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 20F));
             this.tableLayoutPanel1.Size = new System.Drawing.Size(305, 394);
             this.tableLayoutPanel1.TabIndex = 40;
+            // 
+            // panel1
+            // 
+            this.panel1.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.panel1.Controls.Add(this.tbNewProject);
+            this.panel1.Controls.Add(this.label1);
+            this.panel1.Location = new System.Drawing.Point(0, 0);
+            this.panel1.Margin = new System.Windows.Forms.Padding(0);
+            this.panel1.Name = "panel1";
+            this.panel1.Size = new System.Drawing.Size(305, 30);
+            this.panel1.TabIndex = 39;
+            // 
+            // tbNewProject
+            // 
+            this.tbNewProject.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(31)))), ((int)(((byte)(22)))), ((int)(((byte)(9)))));
+            this.tbNewProject.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.tbNewProject.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.tbNewProject.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
+            this.tbNewProject.ForeColor = System.Drawing.Color.WhiteSmoke;
+            this.tbNewProject.Location = new System.Drawing.Point(91, 0);
+            this.tbNewProject.Name = "tbNewProject";
+            this.tbNewProject.Size = new System.Drawing.Size(214, 26);
+            this.tbNewProject.TabIndex = 38;
+            // 
+            // label1
+            // 
+            this.label1.Dock = System.Windows.Forms.DockStyle.Left;
+            this.label1.ForeColor = System.Drawing.Color.DarkGray;
+            this.label1.Location = new System.Drawing.Point(0, 0);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(91, 30);
+            this.label1.TabIndex = 44;
+            this.label1.Text = "NEW PROJECT:";
+            this.label1.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             // 
             // AppForm
             // 
@@ -117,7 +141,8 @@
             this.Padding = new System.Windows.Forms.Padding(7);
             this.Text = "Project time tracker";
             this.tableLayoutPanel1.ResumeLayout(false);
-            this.tableLayoutPanel1.PerformLayout();
+            this.panel1.ResumeLayout(false);
+            this.panel1.PerformLayout();
             this.ResumeLayout(false);
 
         }
@@ -125,9 +150,11 @@
         #endregion
 
         private System.Windows.Forms.Button btnToggle;
-        private System.Windows.Forms.TextBox tbNewProject;
         private System.Windows.Forms.ListBox lbProjects;
         private System.Windows.Forms.TableLayoutPanel tableLayoutPanel1;
+        private System.Windows.Forms.Panel panel1;
+        private System.Windows.Forms.TextBox tbNewProject;
+        private System.Windows.Forms.Label label1;
     }
 }
 
