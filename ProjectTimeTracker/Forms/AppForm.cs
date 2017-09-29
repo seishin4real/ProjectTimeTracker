@@ -33,7 +33,24 @@ namespace ProjectTimeTracker.Forms
         protected override void OnFormClosing(FormClosingEventArgs e)
         {
             base.OnFormClosing(e);
-            //todo
+
+            if (_isMeasuring && (e.CloseReason == CloseReason.UserClosing || e.CloseReason == CloseReason.WindowsShutDown))
+            {
+                var dr = MessageBox.Show(
+                    $"Time tracking in progress.{Environment.NewLine}Stop?",
+                    "Confirm", 
+                    MessageBoxButtons.OKCancel, 
+                    MessageBoxIcon.Question
+                );
+                if (dr == DialogResult.OK)
+                {
+                    ToggleState();
+                }
+                else
+                {
+                    e.Cancel = true;
+                }
+            }
         }
 
         protected override void OnLoad(EventArgs e)
