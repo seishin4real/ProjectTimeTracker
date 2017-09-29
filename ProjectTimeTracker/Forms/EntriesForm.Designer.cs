@@ -42,8 +42,12 @@
             this.btnSelectToday = new System.Windows.Forms.Button();
             this.label1 = new System.Windows.Forms.Label();
             this.splitter1 = new System.Windows.Forms.Splitter();
+            this.pnMenu2 = new System.Windows.Forms.Panel();
+            this.btnViewArchives = new System.Windows.Forms.Button();
+            this.btnArchive = new System.Windows.Forms.Button();
             this.panel1.SuspendLayout();
             this.pnMenu.SuspendLayout();
+            this.pnMenu2.SuspendLayout();
             this.SuspendLayout();
             // 
             // lbEntries
@@ -66,6 +70,7 @@
             // 
             this.panel1.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.panel1.Controls.Add(this.output);
+            this.panel1.Controls.Add(this.pnMenu2);
             this.panel1.Controls.Add(this.btnCancel);
             this.panel1.Dock = System.Windows.Forms.DockStyle.Bottom;
             this.panel1.Location = new System.Drawing.Point(7, 481);
@@ -81,9 +86,9 @@
             this.output.Dock = System.Windows.Forms.DockStyle.Fill;
             this.output.Font = new System.Drawing.Font("Consolas", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
             this.output.ForeColor = System.Drawing.Color.WhiteSmoke;
-            this.output.Location = new System.Drawing.Point(0, 0);
+            this.output.Location = new System.Drawing.Point(0, 30);
             this.output.Name = "output";
-            this.output.Size = new System.Drawing.Size(784, 279);
+            this.output.Size = new System.Drawing.Size(784, 249);
             this.output.TabIndex = 1;
             this.output.Text = "";
             // 
@@ -236,6 +241,52 @@
             this.splitter1.TabIndex = 3;
             this.splitter1.TabStop = false;
             // 
+            // pnMenu2
+            // 
+            this.pnMenu2.Controls.Add(this.btnArchive);
+            this.pnMenu2.Controls.Add(this.btnViewArchives);
+            this.pnMenu2.Dock = System.Windows.Forms.DockStyle.Top;
+            this.pnMenu2.Location = new System.Drawing.Point(0, 0);
+            this.pnMenu2.Margin = new System.Windows.Forms.Padding(0);
+            this.pnMenu2.Name = "pnMenu2";
+            this.pnMenu2.Padding = new System.Windows.Forms.Padding(3);
+            this.pnMenu2.Size = new System.Drawing.Size(784, 30);
+            this.pnMenu2.TabIndex = 41;
+            // 
+            // btnViewArchives
+            // 
+            this.btnViewArchives.AutoSize = true;
+            this.btnViewArchives.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
+            this.btnViewArchives.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(39)))), ((int)(((byte)(40)))), ((int)(((byte)(34)))));
+            this.btnViewArchives.Dock = System.Windows.Forms.DockStyle.Right;
+            this.btnViewArchives.FlatAppearance.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(59)))), ((int)(((byte)(58)))), ((int)(((byte)(50)))));
+            this.btnViewArchives.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnViewArchives.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
+            this.btnViewArchives.Location = new System.Drawing.Point(677, 3);
+            this.btnViewArchives.Margin = new System.Windows.Forms.Padding(2);
+            this.btnViewArchives.Name = "btnViewArchives";
+            this.btnViewArchives.Size = new System.Drawing.Size(104, 24);
+            this.btnViewArchives.TabIndex = 44;
+            this.btnViewArchives.Text = "VIEW ARCHIVES";
+            this.btnViewArchives.UseVisualStyleBackColor = false;
+            // 
+            // btnArchive
+            // 
+            this.btnArchive.AutoSize = true;
+            this.btnArchive.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
+            this.btnArchive.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(39)))), ((int)(((byte)(40)))), ((int)(((byte)(34)))));
+            this.btnArchive.Dock = System.Windows.Forms.DockStyle.Right;
+            this.btnArchive.FlatAppearance.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(59)))), ((int)(((byte)(58)))), ((int)(((byte)(50)))));
+            this.btnArchive.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnArchive.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
+            this.btnArchive.Location = new System.Drawing.Point(552, 3);
+            this.btnArchive.Margin = new System.Windows.Forms.Padding(2);
+            this.btnArchive.Name = "btnArchive";
+            this.btnArchive.Size = new System.Drawing.Size(125, 24);
+            this.btnArchive.TabIndex = 45;
+            this.btnArchive.Text = "ARCHIVE SELECTED";
+            this.btnArchive.UseVisualStyleBackColor = false;
+            // 
             // EntriesForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -257,6 +308,8 @@
             this.panel1.ResumeLayout(false);
             this.pnMenu.ResumeLayout(false);
             this.pnMenu.PerformLayout();
+            this.pnMenu2.ResumeLayout(false);
+            this.pnMenu2.PerformLayout();
             this.ResumeLayout(false);
 
         }
@@ -275,5 +328,8 @@
         private System.Windows.Forms.Button btnSelectThisMonth;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Splitter splitter1;
+        private System.Windows.Forms.Panel pnMenu2;
+        private System.Windows.Forms.Button btnArchive;
+        private System.Windows.Forms.Button btnViewArchives;
     }
 }

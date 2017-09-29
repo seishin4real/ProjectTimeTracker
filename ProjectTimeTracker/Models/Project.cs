@@ -5,7 +5,7 @@ using Newtonsoft.Json;
 
 namespace ProjectTimeTracker.Models
 {
-    public class Project
+    public class Project : IEntriesContainer
     {
         [JsonProperty(Order = 1)]
         public long Id { get; set; } = DateTime.Now.Ticks;
@@ -15,6 +15,8 @@ namespace ProjectTimeTracker.Models
         public DateTime LastUsed { get; set; } = DateTime.Now;
         [JsonProperty(Order = 4)]
         public List<ProjectEntry> Entries { get; set; } = new List<ProjectEntry>();
+        [JsonProperty(Order = 5)]
+        public List<ProjectArchiveEntry> Archives { get; set; } = new List<ProjectArchiveEntry>();
 
         public Project(string name)
         {

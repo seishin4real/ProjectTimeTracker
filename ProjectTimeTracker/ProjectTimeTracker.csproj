@@ -57,17 +57,26 @@
     <Compile Include="Forms\AppForm.Designer.cs">
       <DependentUpon>AppForm.cs</DependentUpon>
     </Compile>
+    <Compile Include="Forms\ArchivesForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\ArchivesForm.Designer.cs">
+      <DependentUpon>ArchivesForm.cs</DependentUpon>
+    </Compile>
     <Compile Include="Forms\EntriesForm.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="Forms\EntriesForm.Designer.cs">
       <DependentUpon>EntriesForm.cs</DependentUpon>
     </Compile>
+    <Compile Include="Forms\ISubForm.cs" />
     <Compile Include="IoC.cs" />
     <Compile Include="Logging\ILogger.cs" />
     <Compile Include="Logging\LoggerConfig.cs" />
     <Compile Include="Logging\NLogger.cs" />
+    <Compile Include="Models\IEntriesContainer.cs" />
     <Compile Include="Models\Project.cs" />
+    <Compile Include="Models\ProjectArchiveEntry.cs" />
     <Compile Include="Models\ProjectEntry.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -76,6 +85,9 @@
     <Compile Include="Services\ProjectsService.cs" />
     <EmbeddedResource Include="Forms\AppForm.resx">
       <DependentUpon>AppForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\ArchivesForm.resx">
+      <DependentUpon>ArchivesForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Forms\EntriesForm.resx">
       <DependentUpon>EntriesForm.cs</DependentUpon>
@@ -118,6 +130,9 @@
     </PackageReference>
     <PackageReference Include="NLog">
       <Version>4.4.11</Version>
+    </PackageReference>
+    <PackageReference Include="System.ValueTuple">
+      <Version>4.4.0</Version>
     </PackageReference>
   </ItemGroup>
   <ItemGroup>

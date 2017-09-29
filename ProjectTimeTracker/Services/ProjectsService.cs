@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Linq;
 
 using ProjectTimeTracker.Models;
@@ -13,7 +14,9 @@ namespace ProjectTimeTracker.Services
         void SaveProjects();
         void AddProjectEntry(Project project, ProjectEntry projectEntry);
         void DeleteProject(long currentProjectId);
-        void DeleteProjectEntries(Project project, string[] entries);
+        void DeleteProjectEntries(IEntriesContainer project, string[] ids);
+        void ArchiveProjectEntries(Project project, string[] ids);
+        void DeleteProjectArchives(Project project, string[] ids);
     }
 
     public class ProjectsService : IProjectsService
@@ -54,9 +57,29 @@ namespace ProjectTimeTracker.Services
             SaveProjects();
         }
 
-        public void DeleteProjectEntries(Project project, string[] ids)
+        public void DeleteProjectEntries(IEntriesContainer project, string[] ids)
         {
             project.Entries.RemoveAll(e => ids.Contains(e.Id));
+            SaveProjects();
+        }
+
+        public void ArchiveProjectEntries(Project project, string[] ids)
+        {
+            var items = project.Entries.Where(e => ids.Contains(e.Id));
+            var archiveEntry = new ProjectArchiveEntry
+            {
+                Date = DateTime.Now,
+                Entries = items.ToList()
+            };
+
+            project.Archives.Add(archiveEntry);
+
+            DeleteProjectEntries(project, ids);
+        }
+
+        public void DeleteProjectArchives(Project project, string[] ids)
+        {
+            project.Archives.RemoveAll(e => ids.Contains(e.Id));
             SaveProjects();
         }
 

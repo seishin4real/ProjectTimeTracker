@@ -17,15 +17,17 @@ namespace ProjectTimeTracker
             builder.RegisterGeneric(typeof(NLogger<>)).As(typeof(ILogger<>));
 
             builder.Register(ctx => new AppForm(
-                    ctx.Resolve<ILogger<AppForm>>(),
                     ctx.Resolve<IProjectsService>()
                 ))
                 .As<AppForm>();
             builder.Register(ctx => new EntriesForm(
-                    ctx.Resolve<ILogger<EntriesForm>>(),
                     ctx.Resolve<IProjectsService>()
                 ))
                 .As<EntriesForm>();
+            builder.Register(ctx => new ArchivesForm(
+                    ctx.Resolve<IProjectsService>()
+                ))
+                .As<ArchivesForm>();
 
             builder.RegisterType<ProjectsService>().As<IProjectsService>().SingleInstance();
             builder.RegisterType<ProjectsPersistenceService>().As<IProjectsPersistenceService>();

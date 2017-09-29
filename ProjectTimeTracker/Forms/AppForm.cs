@@ -10,7 +10,6 @@ namespace ProjectTimeTracker.Forms
 {
     public partial class AppForm : Form
     {
-        private readonly ILogger<AppForm> _logger;
         private readonly IProjectsService _projectsService;
 
         private bool _isMeasuring;
@@ -19,12 +18,11 @@ namespace ProjectTimeTracker.Forms
         private Project CurrentProject => lbProjects.SelectedItem as Project;
         private ProjectEntry CurrentProjectEntry { get; set; }
 
-        public AppForm(ILogger<AppForm> logger, IProjectsService projectsService)
+        public AppForm(IProjectsService projectsService)
         {
             InitializeComponent();
             BindEventHandlers();
 
-            _logger = logger;
             _projectsService = projectsService;
         }
 
@@ -38,8 +36,8 @@ namespace ProjectTimeTracker.Forms
             {
                 var dr = MessageBox.Show(
                     $"Time tracking in progress.{Environment.NewLine}Stop?",
-                    "Confirm", 
-                    MessageBoxButtons.OKCancel, 
+                    "Confirm",
+                    MessageBoxButtons.OKCancel,
                     MessageBoxIcon.Question
                 );
                 if (dr == DialogResult.OK)
@@ -73,20 +71,14 @@ namespace ProjectTimeTracker.Forms
 
             btnToggle.Click += (s, e) => ToggleState();
 
-            lbProjects.MouseDoubleClick += (s, e) =>
-            {
-                using (var form = IoC.Resolve<EntriesForm>())
-                {
-                    form.Project = CurrentProject;
-                    form.ShowDialog(this);
-                }
-            };
+            lbProjects.MouseDoubleClick += (s, e) => ShowSubForm<EntriesForm>();
+
             lbProjects.KeyDown += (s, e) =>
             {
-                if (e.KeyCode == Keys.Delete)
-                {
-                    DeleteProject();
-                }
+                if (e.KeyCode == Keys.Delete) { DeleteProject(); }
+                else if (e.KeyCode == Keys.A) { ShowSubForm<ArchivesForm>(); }
+                else if (e.KeyCode == Keys.E) { ShowSubForm<EntriesForm>(); }
+                else if (e.KeyCode == Keys.S) { ToggleState(); }
             };
         }
 
@@ -133,5 +125,15 @@ namespace ProjectTimeTracker.Forms
                 btnToggle.Text = "START";
             }
         }
+
+        private void ShowSubForm<T>() where T : ISubForm, IDisposable
+        {
+            using (var form = IoC.Resolve<T>())
+            {
+                form.Project = CurrentProject;
+                form.ShowDialog(this);
+            }
+        }
+
     }
 }
